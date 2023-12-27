@@ -10,7 +10,8 @@ const TruckSchema = new Schema({
         type: Schema.Types.String, ref: 'Name'
     }],
     letter: [{
-        type: Schema.Types.Array, ref: 'Letter'
+        type: Schema.Types.String, ref: 'Letter',
+        length: 1,
     }],
     date: {
         type: Schema.Types.Date, ref: "Date"
