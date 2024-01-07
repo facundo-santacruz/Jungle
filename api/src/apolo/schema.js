@@ -19,10 +19,8 @@ export const typeDefs = `#graphql
 
   type Total {
     driver: Driver
-    arrivalTime: String
-    arrivalPeople: Int
-    departureTime: String
-    departurePeople: Int
+    time: String
+    People: Int
   }
 
   type Fuel {
@@ -31,9 +29,8 @@ export const typeDefs = `#graphql
   }
 
   type Movement{
-    
-    arrivalTime: [Total]
-    departureTime: [String]
+    arrival: [Total]
+    departure: [Total]
   }
 
   type TruckTransport { 
