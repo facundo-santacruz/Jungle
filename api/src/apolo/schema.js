@@ -17,6 +17,32 @@ export const typeDefs = `#graphql
     dni: String
   }
 
+  type Total {
+    driver: Driver
+    arrivalTime: String
+    arrivalPeople: Int
+    departureTime: String
+    departurePeople: Int
+  }
+
+  type Fuel {
+    quantity: Int
+    hour: String
+  }
+
+  type Movement{
+    
+    arrivalTime: [Total]
+    departureTime: [String]
+  }
+
+  type TruckTransport { 
+    truck: Truck
+    date: String
+    movements: [Movement] 
+    fuel: [Fuel]
+  }
+
   type Query {
     truck(where: JSON): [Truck]
     driver(where: JSON): [Driver]
