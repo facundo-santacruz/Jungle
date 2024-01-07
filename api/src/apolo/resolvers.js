@@ -11,6 +11,6 @@ export const resolvers = {
 
     Mutation: {
         //Truck
-        addTruck: ( { name, letter, date, patent } ) => addTruck( name, letter, date, patent )
+        addTruck: (_, { name, letter, date, patent } ) => addTruck( name, letter, date, patent )
     }
 }

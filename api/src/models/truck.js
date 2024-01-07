@@ -1,24 +1,23 @@
 import mongoose, { Schema } from 'mongoose';
 
 const TruckSchema = new Schema({
-    id: {
-        type: Number,
-        unique: true,
-        required: true,
+    name: { 
+        type: Schema.Types.String, ref: 'Name',
+        unique: true
     },
-    name: [{ 
-        type: Schema.Types.String, ref: 'First name'
-    }],
-    letter: [{
+    letter: {
         type: Schema.Types.String, ref: 'Letter',
-        length: 1,
-    }],
-    date: {
-        type: Schema.Types.Date, ref: "Birthday"
+        maxLength: 1,
+        unique: true
     },
-    patent:{
-        type: Schema.Types.String, ref: "Patent"
-    }
+    date: {
+        type: Schema.Types.String, ref: "Birthday"
+    },
+    patent: {
+        type: Schema.Types.String, ref: "Patent",
+        unique: true,
+        maxLength: 7,
+    },
     
 })
 
