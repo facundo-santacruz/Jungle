@@ -6,15 +6,20 @@ const DriverSchema = new Schema({
         unique: true,
         required: true,
     },
-    name: [{ 
+    first_name: [{ 
+        type: Schema.Types.String, ref: 'Name'
+    }],
+    last_name: [{ 
         type: Schema.Types.String, ref: 'Name'
     }],
     birthday: {
         type: Schema.Types.Date, ref: "Birthday"
     },
-    
+    dni : {
+        type: Schema.Types.String, ref: "DNI",
+    },
 })
 
-const Driver = mongoose.model('Conductor', DriverSchema);
+const Driver = mongoose.model('Driver', DriverSchema);
 
 export default Driver;
