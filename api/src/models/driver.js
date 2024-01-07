@@ -1,22 +1,18 @@
 import mongoose, { Schema } from 'mongoose';
 
 const DriverSchema = new Schema({
-    id: {
-        type: Number,
-        unique: true,
-        required: true,
+    firstName: { 
+        type: Schema.Types.String, ref: 'First Name'
     },
-    first_name: [{ 
-        type: Schema.Types.String, ref: 'Name'
-    }],
-    last_name: [{ 
-        type: Schema.Types.String, ref: 'Name'
-    }],
+    lastName: { 
+        type: Schema.Types.String, ref: 'Last Name'
+    },
     birthday: {
-        type: Schema.Types.Date, ref: "Birthday"
+        type: Schema.Types.String, ref: "Birthday"
     },
     dni : {
         type: Schema.Types.String, ref: "DNI",
+        maxLength: 8
     },
 })
 

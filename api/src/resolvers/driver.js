@@ -1,6 +1,6 @@
-import Driver from "../models/driver";
+import Driver from "../models/driver.js";
 
 //AGREGAR CAMIÓN
-export const addDriver = async( first_name, last_name, birthday, dni ) => {
-    return await Driver.create({ first_name, last_name, birthday, dni });
+export const addDriver = async( firstName, lastName, birthday, dni ) => {
+    return await Driver.create({ firstName, lastName, birthday, dni });
 };
