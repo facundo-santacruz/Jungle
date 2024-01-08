@@ -2,7 +2,7 @@
 export const typeDefs = `#graphql
   scalar JSON
   type Truck {
-    _id: String
+    _id: ID
     name: String      
     letter: String
     date: String
@@ -10,7 +10,7 @@ export const typeDefs = `#graphql
   }
 
   input TruckInput{
-    _id: String!
+    _id: ID!
     name: String      
     letter: String
     date: String
@@ -18,7 +18,7 @@ export const typeDefs = `#graphql
   }
 
   type Driver {
-    _id: String!
+    _id: ID!
     firstName: String
     lastName: String 
     birthday: String
@@ -48,6 +48,10 @@ export const typeDefs = `#graphql
     fuel: [Fuel]
   }
 
+  type Message{
+    message: String
+  }
+
   type Query {
     truck(where: JSON): [Truck]
     driver(where: JSON): [Driver]
@@ -56,6 +60,7 @@ export const typeDefs = `#graphql
   type Mutation {
     addTruck(name: String, letter: String, date: String, patent: String ): Truck
     updateTruck(input: TruckInput): Truck
+    deleteTruck(_id: ID): [Truck]
     addDriver(firstName: String, lastName: String, birthday: String, dni: String ): Driver
   }
     

@@ -28,5 +28,15 @@ export const updateTruck = async ( input ) => {
         throw new Error('No se encontró el camión para actualizar');
     }
     await compareValuesTruck(input);  
-    return await Truck.findOneAndUpdate({_id: input._id}, input);
+    // return await Truck.findOneAndUpdate({_id: input._id}, input);
+}
+
+//Still with error when don´t find the data
+export const deleteTruck = async ( _id ) => {
+    const truck = await Truck.findOne( {_id: _id} );
+    if (!truck){
+        throw new Error('No se encontró el camión para eliminar');
+    }
+    await Truck.findOneAndDelete(  {_id: _id} );
+    return await Truck.find().populate()
 }
