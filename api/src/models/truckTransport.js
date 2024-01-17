@@ -8,7 +8,7 @@ const TruckTransportSchema = new Schema({
         ref: "Truck"
     },
     date: {
-        type: Schema.Types.Date,
+        type: Schema.Types.String,
         default: moment(moment.now()).format("DD/MM/YYYY")
     },
     movements: [{
