@@ -19,10 +19,12 @@ export const addTruckDay = async (  truck   ) => {
 export const addMovement = async ( truckTransport, type ) => {
     console.log(truckTransport);
     // if ( !truck ) throw new Error("Movimiento (Entrada/Salida) de camión no creado.")
-    // if ( type == "arrival" ){
+    if ( type == "arrival" ){
+        // CREATE MOVEMENT
         const movement = await Movement.create({});
         await TruckTransport.findByIdAndUpdate({_id: truckTransport}, {
             $push:{ movements : movement._id },
-        })
-    // }
+        });
+        
+    }
 }
