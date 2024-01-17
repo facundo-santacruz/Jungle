@@ -2,16 +2,16 @@ import mongoose, { Schema } from 'mongoose';
 
 const DriverSchema = new Schema({
     firstName: { 
-        type: Schema.Types.String, ref: 'First Name'
+        type: Schema.Types.String
     },
     lastName: { 
-        type: Schema.Types.String, ref: 'Last Name'
+        type: Schema.Types.String
     },
     birthday: {
-        type: Schema.Types.String, ref: "Birthday"
+        type: Schema.Types.String
     },
     dni : {
-        type: Schema.Types.String, ref: "DNI",
+        type: Schema.Types.String,
         maxLength: 8
     },
 })

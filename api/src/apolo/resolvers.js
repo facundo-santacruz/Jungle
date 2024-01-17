@@ -1,8 +1,7 @@
-import { addPath } from 'graphql/jsutils/Path.js';
 import Driver from '../models/driver.js';
 import Truck from '../models/truck.js';
 import { addTruck, deleteTruck, updateTruck } from '../resolvers/truck.js';
-import { addDriver } from '../resolvers/driver.js';
+import { addDriver, deleteDriver, updateDriver } from '../resolvers/driver.js';
 
 export const resolvers = {
 
@@ -17,6 +16,8 @@ export const resolvers = {
         updateTruck: async (parent,  {input}  ) => await updateTruck ( input ),
         deleteTruck: async (_, { _id } )=> deleteTruck( _id ),
         //Driver
-        addDriver: (_, { firstName, lastName, birthday, dni } ) => addDriver( firstName, lastName, birthday, dni )
+        addDriver: (_, { firstName, lastName, birthday, dni } ) => addDriver( firstName, lastName, birthday, dni ),
+        updateDriver: async (parent,  {input}  ) => await updateDriver ( input ),
+        deleteDriver: async ( _, {_id}) => deleteDriver (_id),
     }
 }

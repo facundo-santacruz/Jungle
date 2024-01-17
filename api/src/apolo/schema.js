@@ -25,6 +25,14 @@ export const typeDefs = `#graphql
     dni: String
   }
 
+  input DriverInput {
+    _id: ID!
+    firstName: String
+    lastName: String 
+    birthday: String
+    dni: String
+  }
+
   type Total {
     driver: Driver
     time: String
@@ -61,7 +69,10 @@ export const typeDefs = `#graphql
     addTruck(name: String, letter: String, date: String, patent: String ): Truck
     updateTruck(input: TruckInput): Truck
     deleteTruck(_id: ID): [Truck]
+
     addDriver(firstName: String, lastName: String, birthday: String, dni: String ): Driver
+    updateDriver(input: DriverInput): Driver
+    deleteDriver(_id: ID): [Driver]
   }
     
   
