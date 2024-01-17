@@ -53,3 +53,12 @@ export const addMovement = async ( truckTransport, kind ) => {
     return TruckTransport.findOne( {_id: truckTransport} ).populate('movements')
 
 }
+
+export const addMovementDriver = async ( id_driver, id_total ) => {
+    const total = await Total.findById(id_total);
+    if (!total) throw new Error ('No existe movimiento de Camión');
+    const driver = await Driver.findById(id_driver);
+    if (!driver) throw new Error ('Conductor Inexistente.')
+    await Total.findByIdAndUpdate(id_total, {driver});
+    return await Total.findById(id_total).populate('driver')
+}
