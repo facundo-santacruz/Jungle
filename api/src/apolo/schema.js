@@ -34,22 +34,26 @@ export const typeDefs = `#graphql
   }
 
   type Total {
+    _id: ID
     driver: Driver
     time: String
     People: Int
   }
 
   type Fuel {
+    _id: ID
     quantity: Int
     hour: String
   }
 
   type Movement{
+    _id: ID
     arrival: [Total]
     departure: [Total]
   }
 
-  type TruckTransport { 
+  type TruckTransport {
+    _id: ID 
     truck: Truck
     date: String
     movements: [Movement] 
@@ -76,6 +80,7 @@ export const typeDefs = `#graphql
     deleteDriver(_id: ID): [Driver]
 
     addTruckDay(truck:ID): TruckTransport
+    addMovement(truckTransport:ID, type:String): TruckTransport
   }
     
   

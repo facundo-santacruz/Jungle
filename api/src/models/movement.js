@@ -1,14 +1,14 @@
 import mongoose, { Schema }  from "mongoose";
 
 const MovementSchema = new Schema({
-    arrival: {
+    arrival: [{
         type: Schema.Types.ObjectId,
         ref: "Total"
-    },
-    departure: {
+    }],
+    departure: [{
         type: Schema.Types.ObjectId,
         ref: "Total"
-    }
+    }]
 })
 
 const Movement = mongoose.model('Movement', MovementSchema);
