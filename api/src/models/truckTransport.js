@@ -11,10 +11,10 @@ const TruckTransportSchema = new Schema({
         type: Schema.Types.String,
         default: moment(moment.now()).format("DD/MM/YYYY")
     },
-    movements: [{
+    movements: {
         type: Schema.Types.ObjectId,
         ref: "Movement"
-    }],
+    },
     fuel: [{
         type :  Schema.Types.ObjectId,
         ref: "Fuel"

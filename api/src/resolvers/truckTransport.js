@@ -3,6 +3,7 @@ import Driver from "../models/driver.js";
 import Truck from "../models/truck.js";
 import TruckTransport from "../models/truckTransport.js";
 import Movement from "../models/movement.js";
+import Total from "../models/total.js";
 
 // Function to see if the truck starts to work this day
 export const addTruckDay = async (  truck   ) => {
@@ -16,15 +17,39 @@ export const addTruckDay = async (  truck   ) => {
     return await response.populate('truck')
 }
 
-export const addMovement = async ( truckTransport, type ) => {
+export const addMovement = async ( truckTransport, kind ) => {
     console.log(truckTransport);
+    const dayTruck = await TruckTransport.findById(truckTransport);
+    const movement = !dayTruck.movements ? await Movement.create({}) : await Movement.findById(dayTruck.movements)
     // if ( !truck ) throw new Error("Movimiento (Entrada/Salida) de camión no creado.")
-    if ( type == "arrival" ){
+    if ( kind == "arrival" ){
         // CREATE MOVEMENT
-        const movement = await Movement.create({});
-        await TruckTransport.findByIdAndUpdate({_id: truckTransport}, {
-            $push:{ movements : movement._id },
+        await TruckTransport.findByIdAndUpdate(truckTransport, {
+            movements: movement._id
         });
-        
+        const total = await Total.create({});
+        // const { _id } = total
+        // await movement.arrival.push({ _id })
+        await Movement.findByIdAndUpdate(movement._id, {
+            $push: {
+                arrival : total._id,
+            }
+        })
+        console.log(movement);
+    } else if (kind == "departure") {
+        await TruckTransport.findByIdAndUpdate(truckTransport, {
+            movements: movement._id
+        });
+        const total = await Total.create({});
+        // const { _id } = total
+        // await movement.arrival.push({ _id })
+        await Movement.findByIdAndUpdate(movement._id, {
+            $push: {
+                departure : total._id,
+            }
+        })
+        console.log(movement);
     }
+    return TruckTransport.findOne( {_id: truckTransport} ).populate('movements')
+
 }

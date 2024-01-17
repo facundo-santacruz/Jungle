@@ -56,7 +56,7 @@ export const typeDefs = `#graphql
     _id: ID 
     truck: Truck
     date: String
-    movements: [Movement] 
+    movements: Movement 
     fuel: [Fuel]
   }
 
@@ -67,7 +67,7 @@ export const typeDefs = `#graphql
   type Query {
     truck(where: JSON): [Truck]
     driver(where: JSON): [Driver]
-    truckDay(where: JSON): [TruckTransport]
+    truckDay(where: JSON): TruckTransport
   }  
 
   type Mutation {
@@ -80,7 +80,7 @@ export const typeDefs = `#graphql
     deleteDriver(_id: ID): [Driver]
 
     addTruckDay(truck:ID): TruckTransport
-    addMovement(truckTransport:ID, type:String): TruckTransport
+    addMovement(truckTransport:ID, kind:String): TruckTransport
   }
     
   

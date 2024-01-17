@@ -25,6 +25,6 @@ export const resolvers = {
 
         //Truck Transport
         addTruckDay: (_, { truck }) => addTruckDay( truck ),
-        addMovement: (_, { truckTransport, type }) => addMovement ( truckTransport, type ),
+        addMovement: (_, { truckTransport, kind }) => addMovement ( truckTransport, kind ),
     }
 }
