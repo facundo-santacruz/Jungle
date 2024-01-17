@@ -21,6 +21,6 @@ const TruckTransportSchema = new Schema({
     }]
 })
 
-const TruckTransport = moongose.model('TruckTransport', TruckTransportSchema);
+const TruckTransport = mongoose.model('TruckTransport', TruckTransportSchema);
 
 export default TruckTransport;
