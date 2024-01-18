@@ -17,55 +17,31 @@ export const addTruckDay = async (  truck   ) => {
     return await response.populate('truck')
 }
 
-export const addMovement = async ( truckTransport, kind ) => {
-    console.log(truckTransport);
-    const dayTruck = await TruckTransport.findById(truckTransport);
-    const movement = !dayTruck.movements ? await Movement.create({}) : await Movement.findById(dayTruck.movements)
-    // if ( !truck ) throw new Error("Movimiento (Entrada/Salida) de camión no creado.")
-    if ( kind == "arrival" ){
-        // CREATE MOVEMENT
-        await TruckTransport.findByIdAndUpdate(truckTransport, {
-            movements: movement._id
-        });
-        const total = await Total.create({});
-        await Movement.findByIdAndUpdate(movement._id, {
-            $push: {
-                arrival : total._id,
-            }
-        })
-        console.log(movement);
-    } else if (kind == "departure") {
-        await TruckTransport.findByIdAndUpdate(truckTransport, {
-            movements: movement._id
-        });
-        const total = await Total.create({});
-        await Movement.findByIdAndUpdate(movement._id, {
-            $push: {
-                departure : total._id,
-            }
-        })
-        console.log(movement);
-    }
-    return TruckTransport.findOne( {_id: truckTransport} ).populate('movements')
-
-}
-
-export const addMovementDriver = async ( id_driver, id_total ) => {
-    const total = await Total.findById(id_total);
-    if (!total) throw new Error ('No existe movimiento de Camión');
-    const driver = await Driver.findById(id_driver);
-    if (!driver) throw new Error ('Conductor Inexistente.')
-    await Total.findByIdAndUpdate(id_total, {driver});
-    return await Total.findById(id_total).populate('driver')
+export const updateTruckDay = async ( id_truck, id_truckTransport ) => {
+    if (!id_truck || !id_truckTransport ) throw new Error('Valores no cargados');
+    const truckTransport = await TruckTransport.findById(id_truckTransport);
+    if (!truckTransport) throw new Error('Movimiento de camión no cargado ala Base de Datos');
+    const truck = await Truck.findById(id_truck);
+    if (!truck) throw new Error(" El camión cargado no existe en la Base de Dtaos.")
+    await TruckTransport.findByIdAndUpdate(id_truckTransport, {truck: id_truck})
+    return await TruckTransport.findById(id_truckTransport).populate('truck').populate('movements').populate("fuel");
 }
 
 export const addQuantityTruck = async ( id_total, quantity ) => {
     const total = await Total.findById(id_total);
     if (!total) throw new Error ("Código no existe.");
     if (!total.driver) throw new Error ("No hay ningún conductor asignado a este camión.");
+    if (parseInt(quantity) > 30) throw new Error ("No es posible enviar a más de 30 personas en un camón.")
+    if (parseInt(quantity) < 0) throw new Error ("No es posible enviar a menos de 0 personas.")
     if (!quantity || typeof quantity === "string") quantity = 0;
     quantity = parseInt(quantity);
     const hour = moment(moment.now()).format("hh:mm:ss")
-    await Total.findByIdAndUpdate(id_total, { quantity, hour})
-    return Total.findById(id_total).populate('driver')
+    if (!total.hour) {
+        await Total.findByIdAndUpdate(id_total, { quantity, hour})
+    } else {
+        await Total.findByIdAndUpdate(id_total, { quantity })
+    }
+    return Total.findById(id_total).populate('driver').exec()
 }
+
+    

@@ -2,7 +2,8 @@ import Driver from '../models/driver.js';
 import Truck from '../models/truck.js';
 import { addTruck, deleteTruck, updateTruck } from '../resolvers/truck.js';
 import { addDriver, deleteDriver, updateDriver } from '../resolvers/driver.js';
-import { addMovement, addMovementDriver, addQuantityTruck, addTruckDay } from '../resolvers/truckTransport.js';
+import {  addQuantityTruck, addTruckDay, updateTruckDay } from '../resolvers/truckTransport.js';
+import { addMovement, addMovementDriver } from "../resolvers/movement.js";
 import TruckTransport from '../models/truckTransport.js';
 
 export const resolvers = {
@@ -25,8 +26,15 @@ export const resolvers = {
 
         //Truck Transport
         addTruckDay: (_, { truck }) => addTruckDay( truck ),
+        updateTruckDay: (_, { id_truck, id_truckTransport }) => updateTruckDay( id_truck, id_truckTransport ),
+
+        //Movement
         addMovement: (_, { truckTransport, kind }) => addMovement ( truckTransport, kind ),
+        
+        //Movement Driver
         addMovementDriver: (_, { id_driver, id_total }) => addMovementDriver ( id_driver, id_total ),
+        
+        //Quantity Truck
         addQuantityTruck: (_, { id_total, quantity }) => addQuantityTruck ( id_total, quantity ),
     }   
 }
