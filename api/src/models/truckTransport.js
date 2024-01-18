@@ -8,19 +8,19 @@ const TruckTransportSchema = new Schema({
         ref: "Truck"
     },
     date: {
-        type: Schema.Types.Date,
+        type: Schema.Types.String,
         default: moment(moment.now()).format("DD/MM/YYYY")
     },
-    movements: [{
+    movements: {
         type: Schema.Types.ObjectId,
         ref: "Movement"
-    }],
+    },
     fuel: [{
         type :  Schema.Types.ObjectId,
         ref: "Fuel"
     }]
 })
 
-const TruckTransport = moongose.model('TruckTransport', TruckTransportSchema);
+const TruckTransport = mongoose.model('TruckTransport', TruckTransportSchema);
 
 export default TruckTransport;
