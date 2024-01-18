@@ -1,9 +1,9 @@
-import moment from "moment";
 import Driver from "../models/driver.js";
 import Truck from "../models/truck.js";
 import TruckTransport from "../models/truckTransport.js";
 import Movement from "../models/movement.js";
 import Total from "../models/total.js";
+import moment from "moment";
 
 // Function to see if the truck starts to work this day
 export const addTruckDay = async (  truck   ) => {
@@ -28,8 +28,6 @@ export const addMovement = async ( truckTransport, kind ) => {
             movements: movement._id
         });
         const total = await Total.create({});
-        // const { _id } = total
-        // await movement.arrival.push({ _id })
         await Movement.findByIdAndUpdate(movement._id, {
             $push: {
                 arrival : total._id,
@@ -41,8 +39,6 @@ export const addMovement = async ( truckTransport, kind ) => {
             movements: movement._id
         });
         const total = await Total.create({});
-        // const { _id } = total
-        // await movement.arrival.push({ _id })
         await Movement.findByIdAndUpdate(movement._id, {
             $push: {
                 departure : total._id,
@@ -61,4 +57,15 @@ export const addMovementDriver = async ( id_driver, id_total ) => {
     if (!driver) throw new Error ('Conductor Inexistente.')
     await Total.findByIdAndUpdate(id_total, {driver});
     return await Total.findById(id_total).populate('driver')
+}
+
+export const addQuantityTruck = async ( id_total, quantity ) => {
+    const total = await Total.findById(id_total);
+    if (!total) throw new Error ("Código no existe.");
+    if (!total.driver) throw new Error ("No hay ningún conductor asignado a este camión.");
+    if (!quantity || typeof quantity === "string") quantity = 0;
+    quantity = parseInt(quantity);
+    const hour = moment(moment.now()).format("hh:mm:ss")
+    await Total.findByIdAndUpdate(id_total, { quantity, hour})
+    return Total.findById(id_total).populate('driver')
 }

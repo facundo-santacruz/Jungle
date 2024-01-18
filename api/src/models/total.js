@@ -7,10 +7,11 @@ const TotalSchema = new Schema({
         ref: "Driver"
     },
     quantity: { 
-        type: Schema.Types.Number
+        type: Schema.Types.Number,
+        default: 0
     },
     hour: {
-        type: Schema.Types.Date
+        type: Schema.Types.String
     },
 })
 

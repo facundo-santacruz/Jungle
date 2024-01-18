@@ -82,6 +82,7 @@ export const typeDefs = `#graphql
     addTruckDay(truck:ID): TruckTransport
     addMovement(truckTransport:ID, kind:String): TruckTransport
     addMovementDriver(id_driver:ID, id_total:ID): Total
+    addQuantityTruck(id_total:ID, quantity: Int): Total
   }
     
   
