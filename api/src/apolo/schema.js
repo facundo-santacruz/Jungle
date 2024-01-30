@@ -40,10 +40,29 @@ export const typeDefs = `#graphql
     quantity: Int
   }
 
+  type TotalInput {
+    _id: ID
+    driver: Driver
+    hour: String
+    quantity: Int
+  }
+
   type Fuel {
     _id: ID
     quantity: Int
     hour: String
+  }
+
+  type FuelInput {
+    _id: ID
+    quantity: Int
+    hour: String
+  }
+
+  type MovementInput{
+    _id: ID
+    arrival: [Total]
+    departure: [Total]
   }
 
   type Movement{
@@ -60,6 +79,14 @@ export const typeDefs = `#graphql
     fuel: [Fuel]
   }
 
+  type TruckTransportInput {
+    _id: ID 
+    truck: Truck
+    date: String
+    movements: Movement 
+    fuel: [Fuel]
+  }
+
   type Message{
     message: String
   }
@@ -68,6 +95,7 @@ export const typeDefs = `#graphql
     truck(where: JSON): [Truck]
     driver(where: JSON): [Driver]
     truckDay(where: JSON): [TruckTransport]
+    movement(where: JSON): [Movement]
   }  
 
   type Mutation {
@@ -81,11 +109,14 @@ export const typeDefs = `#graphql
 
     addTruckDay(truck:ID): TruckTransport
     updateTruckDay(id_truck:ID, id_truckTransport:ID): TruckTransport
+    deleteTruckDay(id_truckTransport: ID): [TruckTransport]
 
     addMovement(truckTransport:ID, kind:String): TruckTransport
     addMovementDriver(id_driver:ID, id_total:ID): Total
 
     addQuantityTruck(id_total:ID, quantity: Int): Total
+
+    loadGasoline(id_truck:ID, id_truckTransport:ID, quantity: Int, hour:String ):TruckTransport
   }
     
   
