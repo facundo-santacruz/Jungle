@@ -17,6 +17,12 @@ export const addTruckDay = async (  truck   ) => {
     return await response.populate('truck')
 }
 
+export const deleteTruckDay = async ( id_truckTransport ) => {
+    const truck = await TruckTransport.findById(id_truckTransport);
+    if (!truck) throw new Error("Transporte Diario no existe")
+    return await TruckTransport.findById(id_truckTransport);
+}
+
 export const updateTruckDay = async ( id_truck, id_truckTransport ) => {
     if (!id_truck || !id_truckTransport ) throw new Error('Valores no cargados');
     const truckTransport = await TruckTransport.findById(id_truckTransport);
@@ -24,7 +30,7 @@ export const updateTruckDay = async ( id_truck, id_truckTransport ) => {
     const truck = await Truck.findById(id_truck);
     if (!truck) throw new Error(" El camión cargado no existe en la Base de Dtaos.")
     await TruckTransport.findByIdAndUpdate(id_truckTransport, {truck: id_truck})
-    return await TruckTransport.findById(id_truckTransport).populate('truck').populate('movements').populate("fuel");
+    return await TruckTransport.findById(id_truckTransport).populate('truck').populate('movements').populate("fuel").exec();
 }
 
 export const addQuantityTruck = async ( id_total, quantity ) => {

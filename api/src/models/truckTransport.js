@@ -13,6 +13,7 @@ const TruckTransportSchema = new Schema({
     },
     movements: {
         type: Schema.Types.ObjectId,
+        foreignField: "_id",
         ref: "Movement"
     },
     fuel: [{
