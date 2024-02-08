@@ -9,9 +9,7 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import Truck from './Container/Truck';
-
-
-
+import Trucks from './Container/Trucks';
 
 
 function App() {
@@ -21,6 +19,7 @@ function App() {
         
           <Routes>
             <Route path="/" Component={Truck}></Route>
+            <Route path='/arrival' Component={Trucks} />
           </Routes>
         
 

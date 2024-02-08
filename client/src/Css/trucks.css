@@ -1,4 +1,4 @@
-.containerPrincipal{
+.principalTrucks{
     height: 80vh;
     width: 100vw;
     position: absolute;
@@ -9,7 +9,7 @@
     background-color: #FFCC00;
 }
 
-.containerSecondary {
+.secondaryTrucks {
     position: relative;
     width: 90%;
     height: 90%;
@@ -46,4 +46,3 @@
         opacity:  0.8;
     }
 }
-
