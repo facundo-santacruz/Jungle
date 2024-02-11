@@ -15,6 +15,9 @@ const TruckSchema = new Schema({
         type: Schema.Types.String,
         maxLength: 7,
     },
+    image: {
+        type: String
+    }
     
 })
 

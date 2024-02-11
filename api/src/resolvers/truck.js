@@ -16,11 +16,11 @@ const compareValuesTruck = async ( input ) => {
     };
 }
 
-export const addTruck = async( name, letter, date, patent ) => {
+export const addTruck = async( name, letter, date, patent, image ) => {
     if (!name  && !patent) throw new Error("Uno de los campos (Nombre o Patente) deben estar completos") 
-    const input= { name, letter, patent };
+    const input= { name, letter, patent, image };
     await compareValuesTruck( input);  
-    return await Truck.create({ name, letter, date, patent });
+    return await Truck.create({ name, letter, date, patent, image });
 };
 
 export const updateTruck = async ( input ) => {

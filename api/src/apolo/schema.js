@@ -7,6 +7,7 @@ export const typeDefs = `#graphql
     letter: String
     date: String
     patent: String
+    image: String
   }
 
   input TruckInput{
@@ -15,6 +16,7 @@ export const typeDefs = `#graphql
     letter: String
     date: String
     patent: String
+    image: String
   }
 
   type Driver {
@@ -99,7 +101,7 @@ export const typeDefs = `#graphql
   }  
 
   type Mutation {
-    addTruck(name: String, letter: String, date: String, patent: String ): Truck
+    addTruck(name: String, letter: String, date: String, patent: String, image: String ): Truck
     updateTruck(input: TruckInput): Truck
     deleteTruck(_id: ID): [Truck]
 

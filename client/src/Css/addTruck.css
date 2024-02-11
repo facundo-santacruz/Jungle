@@ -1,0 +1,49 @@
+.secondaryTrucks {
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.form{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+h1{
+    text-align: center;
+}
+
+.secondary-form {
+    height: 50vh;
+    width: 42%;
+    border-radius: 20px;
+    border: 2px black  solid;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   font-size: 20px; 
+}
+
+input{
+    width: 80%;
+    margin: 5px auto;
+    height: 20px;
+    font-size: 20px;
+}
+
+.containerimage{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.imagen{
+    width: 100%;
+    height: 80%;
+}

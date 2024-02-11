@@ -29,7 +29,7 @@ export const resolvers = {
 
     Mutation: {
         //Truck
-        addTruck: (_, { name, letter, date, patent } ) => addTruck( name, letter, date, patent ),
+        addTruck: (_, { name, letter, date, patent, image } ) => addTruck( name, letter, date, patent, image ),
         updateTruck: async (parent,  {input}  ) => await updateTruck ( input ),
         deleteTruck: async (_, { _id } )=> deleteTruck( _id ),
 

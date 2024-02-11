@@ -1,7 +1,8 @@
 import React from 'react';
 import '../Css/truckContainer.css';
-import come from "../images/TruckCome.jpg";
-import go from "../images/TruckGo.jpg";
+import come from "../images/arrival.jpg";
+import go from "../images/departure.jpg";
+import fuel from "../images/gasoline.jpg";
 import { Link } from "react-router-dom";
 
 const Truck = () => {
@@ -16,8 +17,8 @@ const Truck = () => {
           <img src={go} />
           <h1>Salida</h1>
         </Link>
-        <Link to={"/gasoiline"}  className='cardPrincipal' alt='Imagen Surtidor'>
-          <img src={go} />
+        <Link to={"/gasoline"}  className='cardPrincipal' alt='Imagen Surtidor'>
+          <img src={fuel} />
           <h1>Combustible</h1>
         </Link>
       </div>

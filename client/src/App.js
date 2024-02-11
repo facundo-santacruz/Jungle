@@ -10,6 +10,7 @@ import {
 import "./index.css";
 import Truck from './Container/Truck';
 import Trucks from './Container/Trucks';
+import AddTruck from './Component/AddTruck';
 
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
           <Routes>
             <Route path="/" Component={Truck}></Route>
             <Route path='/arrival' Component={Trucks} />
+            <Route path='/departure' Component={Trucks} />
+            <Route path='/gasoline' Component={Trucks} />
+            <Route path='/addTruck' Component={AddTruck} />
           </Routes>
         
 

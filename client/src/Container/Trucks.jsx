@@ -8,10 +8,16 @@ const Trucks = () => {
     if  (loading) return <p>Loading...</p>;
     if (error) return <p> Error : {error.message}</p>;
     if (data){
-        console.log(data);
+        const { truck } = data;
+        console.log(truck[1]);
         return (
             <div className='principalTrucks'>
                 <div className='secondaryTrucks'>
+                    {truck.map((trucks) => {
+                        return <div key={trucks._id} >
+                            <h2>{trucks.name}</h2>
+                        </div>
+                    })}
     
                 </div>
             </div>
