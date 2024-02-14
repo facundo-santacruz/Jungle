@@ -14,6 +14,9 @@ const DriverSchema = new Schema({
         type: Schema.Types.String,
         maxLength: 8
     },
+    image: {
+        type: Schema.Types.String,
+    }
 })
 
 const Driver = mongoose.model('Driver', DriverSchema);

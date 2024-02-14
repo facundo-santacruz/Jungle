@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react'
 import '../Css/trucks.css';
 import '../Css/addTruck.css'
 import { useMutation } from "@apollo/client";
-import { ADD_TRUCK } from '../Apollo/Mutation/Truck';
-const AddTruck = () => {
+import { ADD_DRIVER } from '../Apollo/Mutation/Driver';
+
+const AddDriver = () => {
   const [ input, setInput ] = useState({
-    name: "",
-    letter: "",
-    date: "",
+    firstName: "",
+    lastName: "",
+    birthday: "",
+    dni: "",
     image: "",
-    patent: ""
   });
-  const [ addTruck ] = useMutation(ADD_TRUCK, {
+  const [ addDriver ] = useMutation(ADD_DRIVER, {
     onError: err => alert(err.message)
   })
 
@@ -24,7 +25,7 @@ const AddTruck = () => {
     }
   }
 
-  // Función de Limpieza del Form
+  // Función de Limpieza del Formulario
   const cleanInput = () =>  {
     setInput("");
     document.getElementById("form").reset();
@@ -50,49 +51,48 @@ const AddTruck = () => {
     }
   }
 
-  //función guardar valores de los input al estado  
   const changeState = (e) => {
     setInput({
       ...input,
       [e.target.name] : e.target.value
-    });
-    inputState();
+    })
   }
 
   //Guardar datos  a la base de datos
   const Add = async() => {
-    let { name, letter, date, image, patent } = input;
-    const response = await addTruck({
+    let { firstName, lastName, birthday, dni, image } = input;
+    const response = await addDriver({
       variables: {
-          name, letter, date, image, patent
+          firstName, lastName, birthday, dni, image
       }
     })
     if (response.data)  cleanInput()  ;
-    document.getElementById("name").focus();
+    document.getElementById("first").focus();
+
   }
 
 
   return (
     <div className='principalTrucks'>
       <div className='secondaryAddTrucks'>
-        <h1>Agregar Camion</h1>
+        <h1>Agregar Conductor</h1>
         <form className='form' id='form'>
           <div className='secondary-form'>
             <div className="input">
-              <label htmlFor="name">Name: </label><br />
-              <input autoComplete='off' onChange={(e)=> changeState(e) } type="text" name="name" id="name"/><br />
+              <label htmlFor="firstName">Nombre/s: </label><br />
+              <input autoComplete={off} onChange={(e)=> changeState(e) } type="text" name="firstName" id="firstName"/><br />
             </div>
             <div className="input">
-              <label htmlFor="letter">Letra: </label><br />
-              <input autoComplete='off' onChange={(e)=> changeState(e) } type="text" name="letter" id="name"/><br />
+              <label htmlFor="lastName">Apellido/s: </label><br />
+              <input onChange={(e)=> changeState(e) } type="text" name="lastName" id="lastName"/><br />
             </div>
             <div className="input">
-              <label htmlFor="date">Fecha de compra: </label><br />
-              <input onChange={(e)=> changeState(e) } type="date" name="date" id="date"/><br />
+              <label htmlFor="date">Fecha de Nacimiento: </label><br />
+              <input onChange={(e)=> changeState(e) } type="date" name="birthday" id="birthday"/><br />
             </div>
             <div className="input">
-              <label htmlFor="patent">Patente: </label><br />
-              <input autoComplete='off' onChange={(e)=> changeState(e) } type="text" name="patent" id="patent"/><br />
+              <label htmlFor="dni">DNI: </label><br />
+              <input onChange={(e)=> changeState(e) } type="text" name="dni" id="dni"/><br />
             </div>
           </div>
           <div className='secondary-form'>
@@ -102,9 +102,7 @@ const AddTruck = () => {
             </div>
           </div>
         </form>
-        <div className='buttonDiv'>
-         <button id="add" onClick={() => Add()} disabled="true">Agregar Camión</button>
-        </div>
+        <button id='add' onClick={() => Add()} disabled >Agregar Conductor</button>
       </div>
 
     </div>
@@ -112,5 +110,4 @@ const AddTruck = () => {
 }
 
 
-
-export default AddTruck
+export default AddDriver
