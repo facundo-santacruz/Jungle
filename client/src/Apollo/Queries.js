@@ -9,6 +9,7 @@ query Truck {
       letter
       date
       patent
+      image
     }
   }`;
 

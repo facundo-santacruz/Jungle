@@ -1,7 +1,8 @@
-.secondaryTrucks {
+.secondaryAddTrucks {
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
+    width: 90%;
 }
 
 .form{

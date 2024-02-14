@@ -11,11 +11,16 @@ const AddTruck = () => {
     image: "",
     patent: ""
   });
-  const [ addTruck, { data, error} ] = useMutation(ADD_TRUCK)
+  const [ addTruck ] = useMutation(ADD_TRUCK, {
+    onError: err => alert(err.message)
+  })
 
   const cleanInput = () =>  {
     setInput("");
-    document.getElementsByClassName("form").reset()
+    document.getElementById("form").reset();
+    document.getElementById("imagen").setAttribute( "src", "" );
+    document.getElementById("file").setAttribute('value', "");
+    
   }
   
   
@@ -43,27 +48,26 @@ const AddTruck = () => {
 
   const Add = async() => {
     let { name, letter, date, image, patent } = input;
-    
     const response = await addTruck({
       variables: {
           name, letter, date, image, patent
       }
     })
-    await (response.data ? cleanInput()  : console.log(response));
-
+    if (response.data)  cleanInput()  ;
+    document.getElementById("name").focus();
 
   }
 
 
   return (
     <div className='principalTrucks'>
-      <div className='secondaryTrucks'>
+      <div className='secondaryAddTrucks'>
         <h1>Agregar Camion</h1>
-        <form className='form'>
+        <form className='form' id='form'>
           <div className='secondary-form'>
             <div className="input">
               <label htmlFor="name">Name: </label><br />
-              <input onChange={(e)=> changeState(e) } type="text" name="name" id="name"/><br />
+              <input autoComplete='off' onChange={(e)=> changeState(e) } type="text" name="name" id="name"/><br />
             </div>
             <div className="input">
               <label htmlFor="letter">Letra: </label><br />
