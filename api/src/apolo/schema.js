@@ -25,6 +25,7 @@ export const typeDefs = `#graphql
     lastName: String 
     birthday: String
     dni: String
+    image: String
   }
 
   input DriverInput {
@@ -33,6 +34,7 @@ export const typeDefs = `#graphql
     lastName: String 
     birthday: String
     dni: String
+    image: String
   }
 
   type Total {
@@ -105,7 +107,7 @@ export const typeDefs = `#graphql
     updateTruck(input: TruckInput): Truck
     deleteTruck(_id: ID): [Truck]
 
-    addDriver(firstName: String, lastName: String, birthday: String, dni: String ): Driver
+    addDriver(firstName: String, lastName: String, birthday: String, dni: String, image:String ): Driver
     updateDriver(input: DriverInput): Driver
     deleteDriver(_id: ID): [Driver]
 

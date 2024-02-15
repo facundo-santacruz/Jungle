@@ -10,7 +10,9 @@ import {
 import "./index.css";
 import Truck from './Container/Truck';
 import Trucks from './Container/Trucks';
+import Drivers from './Container/Drivers';
 import AddTruck from './Component/AddTruck';
+import AddDriver from './Component/AddDriver';
 
 
 function App() {
@@ -23,7 +25,10 @@ function App() {
             <Route path='/arrival' Component={Trucks} />
             <Route path='/departure' Component={Trucks} />
             <Route path='/gasoline' Component={Trucks} />
+            <Route path='/driver' Component={Drivers} />
             <Route path='/addTruck' Component={AddTruck} />
+            <Route path='/addDriver' Component={AddDriver} />
+
           </Routes>
         
 

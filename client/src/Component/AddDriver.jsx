@@ -18,7 +18,7 @@ const AddDriver = () => {
 
   //Función para controlar que todosw los campo sesten completos
   const inputState = () => {
-    if ( !!input.name && !!input.letter && !!input.date && !!input.image && !!input.patent ){
+    if ( !!input.firstName && !!input.lastName && !!input.birthday && !!input.image && !!input.dni ){
       document.getElementById("add").removeAttribute("disabled");
     }else{
       document.getElementById("add").setAttribute("disabled", true);
@@ -56,18 +56,21 @@ const AddDriver = () => {
       ...input,
       [e.target.name] : e.target.value
     })
+    inputState();
   }
 
   //Guardar datos  a la base de datos
   const Add = async() => {
+    console.log("hi");
     let { firstName, lastName, birthday, dni, image } = input;
     const response = await addDriver({
       variables: {
           firstName, lastName, birthday, dni, image
       }
     })
+    console.log(response.data);
     if (response.data)  cleanInput()  ;
-    document.getElementById("first").focus();
+    document.getElementById("firstName").focus();
 
   }
 
@@ -80,7 +83,7 @@ const AddDriver = () => {
           <div className='secondary-form'>
             <div className="input">
               <label htmlFor="firstName">Nombre/s: </label><br />
-              <input autoComplete={off} onChange={(e)=> changeState(e) } type="text" name="firstName" id="firstName"/><br />
+              <input autoComplete={"off"} onChange={(e)=> changeState(e) } type="text" name="firstName" id="firstName"/><br />
             </div>
             <div className="input">
               <label htmlFor="lastName">Apellido/s: </label><br />
@@ -102,7 +105,7 @@ const AddDriver = () => {
             </div>
           </div>
         </form>
-        <button id='add' onClick={() => Add()} disabled >Agregar Conductor</button>
+        <button id='add' onClick={() => Add()} >Agregar Conductor</button>
       </div>
 
     </div>

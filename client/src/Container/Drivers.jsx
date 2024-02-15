@@ -1,23 +1,21 @@
 import React from 'react';
 import '../Css/trucks.css';
 import { useQuery, useMutation } from "@apollo/client";
-import Card from '../Component/Card.jsx';
+import { GET_ALLDRIVERS } from '../Apollo/Queries.js';
 import { useLocation } from 'react-router-dom';
-import { GET_ALLTRUCKS } from '../Apollo/Queries.js';
+import DriverCard from '../Component/DriverCard.jsx';
 
-const Trucks = () => {
-    const location = useLocation();
-    const {data, error, loading} = useQuery(GET_ALLTRUCKS)
+const Drivers = ( { truck, location } ) => {
+    const {data, error, loading} = useQuery(GET_ALLDRIVERS)
     if  (loading) return <p>Loading...</p>;
     if (error) return <p> Error : {error.message}</p>;
     if (data){
-        console.log(data);
         return (
             <div className='principalTrucks'>
                 <div className='secondaryTrucks'>
-                    {data.truck.map((truck) => {
+                    {data.driver.map((driver) => {
                         return (
-                            <Card  truck={truck} location={location} />
+                            <DriverCard  id={driver._id} driver={driver} truck={truck} location={location} />
                     )})}
     
                 </div>
@@ -26,4 +24,4 @@ const Trucks = () => {
     }
 }
 
-export default Trucks
+export default Drivers

@@ -34,7 +34,7 @@ export const resolvers = {
         deleteTruck: async (_, { _id } )=> deleteTruck( _id ),
 
         //Driver
-        addDriver: (_, { firstName, lastName, birthday, dni } ) => addDriver( firstName, lastName, birthday, dni ),
+        addDriver: (_, { firstName, lastName, birthday, dni, image } ) => addDriver( firstName, lastName, birthday, dni, image ),
         updateDriver: async (parent,  {input}  ) => await updateDriver ( input ),
         deleteDriver: async ( _, {_id}) => deleteDriver (_id),
 

@@ -10,11 +10,11 @@ const compareValuesDriver = async ( input ) => {
     
 
 //AGREGAR CAMIÓN
-export const addDriver = async( firstName, lastName, birthday, dni ) => {
+export const addDriver = async( firstName, lastName, birthday, dni, image ) => {
     if (!firstName && !lastName && !dni) throw new Error("Uno de los campos (Nombre, Apellido o DNI) deben estar completos") 
     const input= { firstName, lastName, dni };
     compareValuesDriver( input )
-    return await Driver.create({ firstName, lastName, birthday, dni });
+    return await Driver.create({ firstName, lastName, birthday, dni, image });
 };
 
 export const updateDriver = async ( input ) => {

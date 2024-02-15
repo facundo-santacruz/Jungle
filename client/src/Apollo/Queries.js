@@ -11,6 +11,17 @@ query Truck {
       patent
       image
     }
-  }`;
+}`;
 
-  export default GET_ALLTRUCKS
+export const GET_ALLDRIVERS = gql `
+  query Driver {
+    driver {
+      _id
+      firstName
+      lastName
+      birthday
+      dni
+      image
+    }
+  }
+`
