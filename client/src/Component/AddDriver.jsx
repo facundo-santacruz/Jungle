@@ -61,7 +61,6 @@ const AddDriver = () => {
 
   //Guardar datos  a la base de datos
   const Add = async() => {
-    console.log("hi");
     let { firstName, lastName, birthday, dni, image } = input;
     const response = await addDriver({
       variables: {

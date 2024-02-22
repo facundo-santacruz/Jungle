@@ -3,27 +3,17 @@ import Truck from '../models/truck.js';
 import { addTruck, deleteTruck, updateTruck } from '../resolvers/truck.js';
 import { addDriver, deleteDriver, updateDriver } from '../resolvers/driver.js';
 import {  addQuantityTruck, addTruckDay, deleteTruckDay, updateTruckDay } from '../resolvers/truckTransport.js';
-import { addMovement, addMovementDriver } from "../resolvers/movement.js";
+import { addDetail, addMovementDriver } from "../resolvers/detail.js";
 import TruckTransport from '../models/truckTransport.js';
 import { loadGasoline } from '../resolvers/fuel.js';
-import Movement from '../models/movement.js';
-import Total from '../models/total.js';
+import Detail from '../models/detail.js';
 
 export const resolvers = {
 
     Query: {
         truck: async (parent, { where }, context) => await Truck.find(where).populate().exec(),
         driver: async (parent, { where }, context) => await Driver.find(where).populate().exec(),
-        truckDay: async (parent, { where }, context ) => await TruckTransport.find(where).populate([
-            {path:'movements' },
-            {path:'movements.arrival'},
-            {path:'movements.departure'},
-            // {path:'movements.arrival.driver', model: "Driver"},
-            // {path:'movements.departure.driver', model: "Driver"},
-            
-            {path:'truck',},
-            {path: 'fuel'}
-        ]).exec(), 
+        truckDay: async (parent, { where }, context ) => await TruckTransport.find(where).populate([ 'fuel', 'arrival.detail',       ]).exec(), 
         // movement: async(parent, { where }, context ) => await Movement.find(where).populate('arrival.driver').populate('departure.driver').exec(),
     },
 
@@ -44,7 +34,7 @@ export const resolvers = {
         deleteTruckDay: ( _, { id_truckTransport }) => deleteTruckDay( id_truckTransport ),
 
         //Movement
-        addMovement: (_, { truckTransport, kind }) => addMovement ( truckTransport, kind ),
+        addDetail: (_, { truckTransport, id_driver,  kind }) => addDetail ( truckTransport, id_driver, kind ),
         
         //Movement Driver
         addMovementDriver: (_, { id_driver, id_total }) => addMovementDriver ( id_driver, id_total ),

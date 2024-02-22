@@ -17,11 +17,11 @@ const AddTruck = () => {
 
   //Función para controlar que todosw los campo sesten completos
   const inputState = () => {
-    if ( !!input.name && !!input.letter && !!input.date && !!input.image && !!input.patent ){
-      document.getElementById("add").removeAttribute("disabled");
-    }else{
-      document.getElementById("add").setAttribute("disabled", true);
-    }
+    // if ( !!input.name && !!input.letter && !!input.date && !!input.image && !!input.patent ){
+    //   document.getElementById("add").removeAttribute("disabled");
+    // }else{
+    //   document.getElementById("add").setAttribute("disabled", true);
+    // }
   }
 
   // Función de Limpieza del Form
@@ -103,7 +103,7 @@ const AddTruck = () => {
           </div>
         </form>
         <div className='buttonDiv'>
-         <button id="add" onClick={() => Add()} disabled="true">Agregar Camión</button>
+         <button id="add" onClick={() => Add()} >Agregar Camión</button>
         </div>
       </div>
 

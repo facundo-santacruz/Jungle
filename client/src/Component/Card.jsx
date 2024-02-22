@@ -4,8 +4,9 @@ import '../Css/trucks.css'
 
 const Card = ( { location, truck } ) => {
   const { name, image } = truck;
+  const info = { location, truck }
   return (
-    <Link to={`/driver`} truck  className='cardTruck' alt={name} key={truck.id}>
+    <Link to={`/driver`} info={info}  className='cardTruck' alt={name} key={truck.id}>
         <img alt={name} src={image} />
         <h3>{name}</h3>
     </Link>

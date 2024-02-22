@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 
-const TotalSchema = new Schema({
+const DetailSchema = new Schema({
     driver: { 
         type: Schema.Types.ObjectId,
         ref: "Driver"
@@ -15,6 +15,6 @@ const TotalSchema = new Schema({
     },
 })
 
-const Total = mongoose.model('Total', TotalSchema);
+const Detail = mongoose.model('Total', DetailSchema);
 
-export default Total;
+export default Detail;

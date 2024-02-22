@@ -13,6 +13,7 @@ import Trucks from './Container/Trucks';
 import Drivers from './Container/Drivers';
 import AddTruck from './Component/AddTruck';
 import AddDriver from './Component/AddDriver';
+import Quantity from './Component/Quantity';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path='/driver' Component={Drivers} />
             <Route path='/addTruck' Component={AddTruck} />
             <Route path='/addDriver' Component={AddDriver} />
+            <Route path='/quantity' Component={Quantity} />
 
           </Routes>
         

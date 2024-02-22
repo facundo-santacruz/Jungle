@@ -1,8 +1,8 @@
 import Driver from "../models/driver.js";
 import Truck from "../models/truck.js";
 import TruckTransport from "../models/truckTransport.js";
-import Movement from "../models/movement.js";
-import Total from "../models/total.js";
+import Movement from "../models/detail.js";
+import Total from "../models/detail.js";
 import moment from "moment";
 
 // Function to see if the truck starts to work this day

@@ -11,16 +11,20 @@ const TruckTransportSchema = new Schema({
         type: Schema.Types.String,
         default: moment(moment.now()).format("DD/MM/YYYY")
     },
-    movements: {
+    arrival: [{
+            type: Schema.Types.ObjectId,
+            ref: "Total"
+    }],
+    departure: [{
         type: Schema.Types.ObjectId,
-        foreignField: "_id",
-        ref: "Movement"
-    },
-    fuel: [{
-        type :  Schema.Types.ObjectId,
+        ref: "Total"
+    }],
+    fuel: {
+        type: Schema.Types.ObjectId,
         ref: "Fuel"
-    }]
-})
+    },
+    }
+)
 
 const TruckTransport = mongoose.model('TruckTransport', TruckTransportSchema);
 

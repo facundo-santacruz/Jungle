@@ -37,7 +37,7 @@ export const typeDefs = `#graphql
     image: String
   }
 
-  type Total {
+  type Detail {
     _id: ID
     driver: Driver
     hour: String
@@ -64,22 +64,21 @@ export const typeDefs = `#graphql
   }
 
   type MovementInput{
-    _id: ID
-    arrival: [Total]
-    departure: [Total]
+    arrival: [Detail]
+    departure: [Detail]
   }
 
   type Movement{
-    _id: ID
-    arrival: [Total]
-    departure: [Total]
+    arrival: [Detail]
+    departure: [Detail]
   }
 
   type TruckTransport {
     _id: ID 
     truck: Truck
     date: String
-    movements: Movement 
+    arrival: [Detail]
+    departure: [Detail]
     fuel: [Fuel]
   }
 
@@ -115,10 +114,10 @@ export const typeDefs = `#graphql
     updateTruckDay(id_truck:ID, id_truckTransport:ID): TruckTransport
     deleteTruckDay(id_truckTransport: ID): [TruckTransport]
 
-    addMovement(truckTransport:ID, kind:String): TruckTransport
-    addMovementDriver(id_driver:ID, id_total:ID): Total
+    addDetail(truckTransport:ID, id_driver: ID, kind:String): TruckTransport
+    addMovementDriver(id_driver:ID, id_total:ID): Detail
 
-    addQuantityTruck(id_total:ID, quantity: Int): Total
+    addQuantityTruck(id_total:ID, quantity: Int): Detail
 
     loadGasoline(id_truck:ID, id_truckTransport:ID, quantity: Int, hour:String ):TruckTransport
   }
