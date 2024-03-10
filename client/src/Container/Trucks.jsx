@@ -12,13 +12,12 @@ const Trucks = () => {
     if  (loading) return <img src={Loading} alt="Loading" />;
     if (error) return <p> Error : {error.message}</p>;
     if (data){
-        console.log(data);
         return (
             <div className='principalTrucks'>
                 <div className='secondaryTrucks'>
                     {data.truck.map((truck) => {
                         return (
-                            <Card  truck={truck} location={location} />
+                            <Card  truck={truck} location={location} key={truck.name} />
                     )})}
     
                 </div>

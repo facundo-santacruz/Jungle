@@ -44,7 +44,7 @@ export const typeDefs = `#graphql
     quantity: Int
   }
 
-  type TotalInput {
+  type DetailInput {
     _id: ID
     driver: Driver
     hour: String
@@ -115,7 +115,7 @@ export const typeDefs = `#graphql
     deleteTruckDay(id_truckTransport: ID): [TruckTransport]
 
     addDetail(truckTransport:ID, id_driver: ID, kind:String): TruckTransport
-    addMovementDriver(id_driver:ID, id_total:ID): Detail
+    addDetailDriver(id_truckTransport:ID, id_driver:ID, id_total:ID): Detail
 
     addQuantityTruck(id_total:ID, quantity: Int): Detail
 

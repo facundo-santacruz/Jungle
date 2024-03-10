@@ -13,11 +13,11 @@ const TruckTransportSchema = new Schema({
     },
     arrival: [{
             type: Schema.Types.ObjectId,
-            ref: "Total"
+            ref: "Detail"
     }],
     departure: [{
         type: Schema.Types.ObjectId,
-        ref: "Total"
+        ref: "Detail"
     }],
     fuel: {
         type: Schema.Types.ObjectId,

@@ -26,10 +26,10 @@ function App() {
             <Route path='/arrival' Component={Trucks} />
             <Route path='/departure' Component={Trucks} />
             <Route path='/gasoline' Component={Trucks} />
-            <Route path='/driver' Component={Drivers} />
+            <Route path='/:type/:truck' Component={Drivers} />
             <Route path='/addTruck' Component={AddTruck} />
             <Route path='/addDriver' Component={AddDriver} />
-            <Route path='/quantity' Component={Quantity} />
+            <Route path='/:type/:truck/quantity' Component={Quantity} />
 
           </Routes>
         

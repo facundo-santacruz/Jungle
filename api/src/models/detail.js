@@ -8,13 +8,13 @@ const DetailSchema = new Schema({
     },
     quantity: { 
         type: Schema.Types.Number,
-        default: 0
+        default: 30
     },
     hour: {
         type: Schema.Types.String
     },
 })
 
-const Detail = mongoose.model('Total', DetailSchema);
+const Detail = mongoose.model('Detail', DetailSchema);
 
 export default Detail;

@@ -1,11 +1,11 @@
 import React from 'react';
 import '../Css/driver.css';
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { GET_ALLDRIVERS } from '../Apollo/Queries.js';
-import { useLocation } from 'react-router-dom';
 import DriverCard from '../Component/DriverCard.jsx';
+import { useLocation, useParams } from 'react-router-dom';
 
-const Drivers = ( { info, location } ) => {
+const Drivers = () => {
     const {data, error, loading} = useQuery(GET_ALLDRIVERS)
     if  (loading) return <p>Loading...</p>;
     if (error) return <p> Error : {error.message}</p>;
@@ -15,7 +15,7 @@ const Drivers = ( { info, location } ) => {
                 <div className='containerSecondary'>
                     {data.driver.map((driver) => {
                         return (
-                            <DriverCard  id={driver._id} info= {info} key={driver._id} driver={driver}/>
+                            <DriverCard  id={driver._id}  key={driver._id} driver={driver}/>
                     )})}
     
                 </div>

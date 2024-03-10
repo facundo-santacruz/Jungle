@@ -3,7 +3,7 @@ import Truck from '../models/truck.js';
 import { addTruck, deleteTruck, updateTruck } from '../resolvers/truck.js';
 import { addDriver, deleteDriver, updateDriver } from '../resolvers/driver.js';
 import {  addQuantityTruck, addTruckDay, deleteTruckDay, updateTruckDay } from '../resolvers/truckTransport.js';
-import { addDetail, addMovementDriver } from "../resolvers/detail.js";
+import { addDetail, addDetailDriver } from "../resolvers/detail.js";
 import TruckTransport from '../models/truckTransport.js';
 import { loadGasoline } from '../resolvers/fuel.js';
 import Detail from '../models/detail.js';
@@ -13,7 +13,7 @@ export const resolvers = {
     Query: {
         truck: async (parent, { where }, context) => await Truck.find(where).populate().exec(),
         driver: async (parent, { where }, context) => await Driver.find(where).populate().exec(),
-        truckDay: async (parent, { where }, context ) => await TruckTransport.find(where).populate([ 'fuel', 'arrival.detail',       ]).exec(), 
+        truckDay: async (parent, { where }, context ) => await TruckTransport.find(where).populate('truck arrival departure').exec(), 
         // movement: async(parent, { where }, context ) => await Movement.find(where).populate('arrival.driver').populate('departure.driver').exec(),
     },
 
@@ -37,7 +37,7 @@ export const resolvers = {
         addDetail: (_, { truckTransport, id_driver,  kind }) => addDetail ( truckTransport, id_driver, kind ),
         
         //Movement Driver
-        addMovementDriver: (_, { id_driver, id_total }) => addMovementDriver ( id_driver, id_total ),
+        addDetailDriver: (_, { id_driver, id_total }) => addDetailDriver ( id_driver, id_total ),
         
         //Quantity Truck
         addQuantityTruck: (_, { id_total, quantity }) => addQuantityTruck( id_total, quantity ),
