@@ -114,7 +114,7 @@ export const typeDefs = `#graphql
     updateTruckDay(id_truck:ID, id_truckTransport:ID): TruckTransport
     deleteTruckDay(id_truckTransport: ID): [TruckTransport]
 
-    addDetail(truckTransport:ID, id_driver: ID, kind:String): TruckTransport
+    addDetail(truckTransport:ID, id_driver: ID, kind:String, quantity:Int): Detail
     addDetailDriver(id_truckTransport:ID, id_driver:ID, id_total:ID): Detail
 
     addQuantityTruck(id_total:ID, quantity: Int): Detail

@@ -34,7 +34,7 @@ export const resolvers = {
         deleteTruckDay: ( _, { id_truckTransport }) => deleteTruckDay( id_truckTransport ),
 
         //Movement
-        addDetail: (_, { truckTransport, id_driver,  kind }) => addDetail ( truckTransport, id_driver, kind ),
+        addDetail: (_, { truckTransport, id_driver,  kind, quantity }) => addDetail ( truckTransport, id_driver, kind, quantity ),
         
         //Movement Driver
         addDetailDriver: (_, { id_driver, id_total }) => addDetailDriver ( id_driver, id_total ),

@@ -6,28 +6,29 @@ import Detail from "../models/detail.js";
 import moment from "moment";
 
 export const addDetail = async ( truckTransport, id_driver , kind, quantity ) => {
-    console.log(truckTransport);
-    const dayTruck = await TruckTransport.findById(truckTransport);
+    const dayTruck = await TruckTransport.findById(truckTransport).populate("truck");
+    if (!dayTruck) throw new Error ('El Movimiento del Camión ' + dayTruck.truck.name + "noesta en la BD.");
     const driver = await Driver.findById(id_driver);
     if (!driver) throw new Error ('No existe el Conductor');
     const hour = moment().format('HH:mm:ss A').toString(); 
     const detail =  await Detail.create({driver: id_driver, quantity, hour})
     // if ( !truck ) throw new Error("Movimiento (Entrada/Salida) de camión no creado.")
+    console.log(kind == "arrival");
     if ( kind == "arrival" ){
         // CREATE MOVEMENT
-        await TruckTransport.findByIdAndUpdate(detail._id, {
+        await TruckTransport.findByIdAndUpdate(truckTransport, {
             $push: {
                 arrival : detail._id,
             }
         })
     } else if (kind == "departure") {
-        await TruckTransport.findByIdAndUpdate(detail._id, {
+        await TruckTransport.findByIdAndUpdate(truckTransport, {
             $push: {
                 departure : detail._id,
             }
         })
     }
-    return TruckTransport.findOne( {_id: truckTransport} ).populate('fuel', 'driver', 'detail')
+    return Detail.findOne( {_id: detail._id} ).populate('driver')
 }
 
 // Get all movements of a specific truck in a specific day

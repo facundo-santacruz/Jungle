@@ -1,22 +1,35 @@
 import React from 'react';
 import "../Css/quantity.css"
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_DETAIL } from '../Apollo/Mutation/Detail';
+import { useState } from 'react';
 
 const Quantity = () => {
-  const location = useLocation()
-  console.log(location);
-  let changeNumber = (e) => {
-    var  btn = document.getElementById('btn');
-    if (e.target.value != "")  btn.removeAttribute( "disabled");
-    else (btn.setAttribute( "disabled", false))
+  const [ quantity, setQuantity ] = useState(30);
+  const [ addDetail ] = useMutation(ADD_DETAIL)
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const AddDetail = async () => {
+    const kind = location.pathname.split("/")
+    const data = await addDetail({variables: {
+      truckTransport: location.state.datos._id,
+      idDriver: location.state.driver._id,
+      kind: kind[1],
+      quantity: parseInt(quantity)
+    }})
+    console.log(data);
+    navigate("/")
   }
+  
   return (
     <div className='principal'>
         <div className='secondary'>
             <h2>Cantidad</h2>
-            <input type="number" onChange={(e) => changeNumber(e)} name="quantity" min="0" max="30" placeholder='30' />
+            <input onChange={(e) => setQuantity(e.target.value) } type="number" name="quantity" min="0" max="30" placeholder='30' />
         </div>
-        <button id='btn' onClick={console.log("Agregado")}>Agregar</button>
+        <button id='btn'  onClick={() => AddDetail()}>Agregar</button>
     </div>
   )
 }

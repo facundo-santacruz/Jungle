@@ -3,9 +3,9 @@ import '../Css/driver.css';
 import { useQuery } from "@apollo/client";
 import { GET_ALLDRIVERS } from '../Apollo/Queries.js';
 import DriverCard from '../Component/DriverCard.jsx';
-import { useLocation, useParams } from 'react-router-dom';
 
 const Drivers = () => {
+    
     const {data, error, loading} = useQuery(GET_ALLDRIVERS)
     if  (loading) return <p>Loading...</p>;
     if (error) return <p> Error : {error.message}</p>;

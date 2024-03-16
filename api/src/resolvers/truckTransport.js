@@ -5,14 +5,18 @@ import moment from "moment";
 import Detail from "../models/detail.js";
 
 // Function to see if the truck starts to work this day
-export const addTruckDay = async (  truck ) => {
-    const date = moment(moment.now()).format("DD/MM/YYYY")
-    const truckFile = await TruckTransport.findOne( {truck: truck, date: date} );
+export const addTruckDay = async ( truck ) => {
+    const date = moment(moment.now()).format("DD/MM/YYYY");
+    console.log(truck);
+    const truckFile = await TruckTransport.findOne( {truck, date} ).populate( 'arrival.detail departure.detail truck' ); 
+    console.log(truckFile)
     if (truckFile){
-        return truckFile
+        return truckFile;  
     }else {
-        return await TruckTransport.create({ truck })
+        await TruckTransport.create({ truck });
     }
+     return await TruckTransport.findOne( {truck, date} ).populate( 'detail truck' )
+
 }
 
 export const deleteTruckDay = async ( id_truckTransport ) => {
