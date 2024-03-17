@@ -8,14 +8,14 @@ import Detail from "../models/detail.js";
 export const addTruckDay = async ( truck ) => {
     const date = moment(moment.now()).format("DD/MM/YYYY");
     console.log(truck);
-    const truckFile = await TruckTransport.findOne( {truck, date} ).populate( 'arrival.detail departure.detail truck' ); 
+    const truckFile = await TruckTransport.findOne( {truck, date} ).populate( '[arrival.detail] [departure.detail] truck' ); 
     console.log(truckFile)
     if (truckFile){
         return truckFile;  
     }else {
         await TruckTransport.create({ truck });
     }
-     return await TruckTransport.findOne( {truck, date} ).populate( 'detail truck' )
+     return await TruckTransport.findOne( {truck, date} ).populate( 'arrival.detail departure.detail truck' )
 
 }
 

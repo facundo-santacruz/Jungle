@@ -62,9 +62,10 @@ const AddTruck = () => {
   //Guardar datos  a la base de datos
   const Add = async() => {
     let { name, letter, date, image, patent } = input;
+    const transformedDate = date.split("-").reverse().join("/")
     const response = await addTruck({
       variables: {
-          name, letter, date, image, patent
+          name, letter, date: transformedDate, image, patent
       }
     })
     if (response.data)  cleanInput()  ;
